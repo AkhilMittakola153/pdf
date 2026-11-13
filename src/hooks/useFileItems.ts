@@ -30,6 +30,7 @@ export function useFileItems({ preview = false }: { preview?: boolean } = {}) {
         return { id: makeId(), file, previewUrl };
       });
       setItems((prev) => [...prev, ...next]);
+      return next; // lets a tool read extra info (e.g. image size) for the new items
     },
     [preview],
   );
