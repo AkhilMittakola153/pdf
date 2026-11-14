@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ToolPage from "@/components/ToolPage";
 import ResizeImageTool from "@/components/tools/ResizeImageTool";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Resize Image Online – Change Size in Pixels or Percent",
-  description:
-    "Resize JPG, PNG and WebP images by pixels or percentage. Keep the aspect ratio, change format and quality, and download as a ZIP. Free and private: images never leave your device.",
-};
+  description: "Resize JPG, PNG and WebP images by pixels or percentage. Keep the aspect ratio, change format and quality, and download as a ZIP. Free and private: images never leave your device.",
+  path: "/resize-image",
+});
 
 const steps = [
   "Drop your JPG, PNG or WebP images into the upload box, or click Choose files.",
@@ -40,6 +41,7 @@ const faqs = [
 export default function ResizeImagePage() {
   return (
     <ToolPage
+      path="/resize-image"
       title="Resize Image"
       intro="Change the size of JPG, PNG and WebP images in pixels or percent. Fast, free and private: your images stay on your device."
       steps={steps}

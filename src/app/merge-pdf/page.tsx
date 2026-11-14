@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ToolPage from "@/components/ToolPage";
 import MergePdfTool from "@/components/tools/MergePdfTool";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Merge PDF Online – Combine PDF Files into One",
-  description:
-    "Combine several PDF files into one document in the order you choose. Free, fast and private: your PDFs are merged in your browser and never uploaded.",
-};
+  description: "Combine several PDF files into one document in the order you choose. Free, fast and private: your PDFs are merged in your browser and never uploaded.",
+  path: "/merge-pdf",
+});
 
 const steps = [
   "Drop two or more PDF files into the upload box, or click Choose files.",
@@ -41,6 +42,7 @@ const faqs = [
 export default function MergePdfPage() {
   return (
     <ToolPage
+      path="/merge-pdf"
       title="Merge PDF"
       intro="Combine multiple PDF files into one document in the order you choose. Free and private: everything happens in your browser."
       steps={steps}

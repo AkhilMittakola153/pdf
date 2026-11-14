@@ -1,18 +1,54 @@
 // Shared layout for every tool page: heading, intro, the tool itself,
-// then "How to" steps and FAQs (useful for visitors and for SEO).
+// then "How to" steps and FAQs. Also adds structured data (JSON-LD) so
+// search engines understand the page is a free web app with FAQs.
 import type { ReactNode } from "react";
+import { SITE } from "@/lib/site";
+import { jsonLd } from "@/lib/seo";
 
 type ToolPageProps = {
   title: string;
   intro: string;
+  path: string; // e.g. "/merge-pdf"
   steps: string[];
   faqs: { q: string; a: string }[];
   children: ReactNode;
 };
 
-export default function ToolPage({ title, intro, steps, faqs, children }: ToolPageProps) {
+export default function ToolPage({ title, intro, path, steps, faqs, children }: ToolPageProps) {
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: `${title} – ${SITE.name}`,
+      url: `${SITE.url}${path}`,
+      description: intro,
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any (runs in a web browser)",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+        { "@type": "ListItem", position: 2, name: title, item: `${SITE.url}${path}` },
+      ],
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structuredData)} />
+
       <header className="text-center">
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{title}</h1>
         <p className="mx-auto mt-3 max-w-2xl text-slate-600">{intro}</p>

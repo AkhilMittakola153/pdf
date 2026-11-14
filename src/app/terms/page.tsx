@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import StaticPage from "@/components/StaticPage";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Terms of Use",
   description: `The terms that apply when you use ${SITE.name}.`,
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (

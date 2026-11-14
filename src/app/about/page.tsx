@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import StaticPage from "@/components/StaticPage";
 import { SITE } from "@/lib/site";
 import { TOOLS } from "@/lib/tools";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "About",
   description: `About ${SITE.name}: free PDF and image tools that run entirely in your browser, so your files never leave your device.`,
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

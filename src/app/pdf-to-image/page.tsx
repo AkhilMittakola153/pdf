@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ToolPage from "@/components/ToolPage";
 import PdfToImageTool from "@/components/tools/PdfToImageTool";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "PDF to Image Converter Online – PDF to JPG or PNG",
-  description:
-    "Convert PDF pages to high-quality JPG or PNG images. Pick pages, choose 72, 150 or 300 DPI, and download as a ZIP. Free and private: your PDF never leaves your device.",
-};
+  description: "Convert PDF pages to high-quality JPG or PNG images. Pick pages, choose 72, 150 or 300 DPI, and download as a ZIP. Free and private: your PDF never leaves your device.",
+  path: "/pdf-to-image",
+});
 
 const steps = [
   "Drop a PDF into the upload box, or click Choose file.",
@@ -41,6 +42,7 @@ const faqs = [
 export default function PdfToImagePage() {
   return (
     <ToolPage
+      path="/pdf-to-image"
       title="PDF to Image"
       intro="Turn PDF pages into JPG or PNG images. Choose the pages and resolution you need. Fast, free and private."
       steps={steps}

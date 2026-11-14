@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Mail } from "lucide-react";
 import StaticPage from "@/components/StaticPage";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact",
   description: `Contact ${SITE.name} with questions, bug reports or feature ideas.`,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const subject = encodeURIComponent(`${SITE.name} feedback`);

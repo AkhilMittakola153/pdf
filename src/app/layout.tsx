@@ -2,14 +2,25 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url), // turns relative links like "/og-image.png" into full URLs
   title: {
-    default: "PDFConvertly – Convert, Merge & Resize PDFs and Images",
-    template: "%s | PDFConvertly",
+    default: `${SITE.name} – Convert, Merge & Resize PDFs and Images`,
+    template: `%s | ${SITE.name}`,
   },
   description:
     "Free online tools to convert images to PDF, PDF to images, merge PDFs and resize PDFs or images. Files are processed in your browser and never uploaded.",
+  applicationName: SITE.name,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 export const viewport: Viewport = {

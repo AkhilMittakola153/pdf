@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ToolPage from "@/components/ToolPage";
 import ImageToPdfTool from "@/components/tools/ImageToPdfTool";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Image to PDF Converter Online – JPG, PNG, WebP to PDF",
-  description:
-    "Convert JPG, PNG and WebP images to a single PDF. Reorder pages, choose A4, Letter or fit-to-image, set orientation and margins. Free and private: images never leave your device.",
-};
+  description: "Convert JPG, PNG and WebP images to a single PDF. Reorder pages, choose A4, Letter or fit-to-image, set orientation and margins. Free and private: images never leave your device.",
+  path: "/image-to-pdf",
+});
 
 const steps = [
   "Drop your JPG, PNG or WebP images into the upload box, or click Choose files.",
@@ -41,6 +42,7 @@ const faqs = [
 export default function ImageToPdfPage() {
   return (
     <ToolPage
+      path="/image-to-pdf"
       title="Image to PDF"
       intro="Combine JPG, PNG and WebP images into one PDF. Reorder pages, pick a page size and download in seconds, all inside your browser."
       steps={steps}

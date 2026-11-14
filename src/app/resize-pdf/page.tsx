@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import ToolPage from "@/components/ToolPage";
 import ResizePdfTool from "@/components/tools/ResizePdfTool";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Resize PDF Online – Change Page Size to A4, Letter, A3",
-  description:
-    "Change the page size of a PDF to A4, Letter, A3, A5, Legal or a custom size. Content is scaled to fit without stretching. Free and private: your PDF never leaves your device.",
-};
+  description: "Change the page size of a PDF to A4, Letter, A3, A5, Legal or a custom size. Content is scaled to fit without stretching. Free and private: your PDF never leaves your device.",
+  path: "/resize-pdf",
+});
 
 const steps = [
   "Drop a PDF into the upload box, or click Choose file.",
@@ -41,6 +42,7 @@ const faqs = [
 export default function ResizePdfPage() {
   return (
     <ToolPage
+      path="/resize-pdf"
       title="Resize PDF"
       intro="Change PDF page size to A4, Letter, A3 and more. Content is scaled to fit without stretching, and everything happens in your browser."
       steps={steps}
