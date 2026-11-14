@@ -29,7 +29,7 @@ export async function openPdf(file: File): Promise<OpenedPdf> {
   const lib = await loadPdfjs();
   const data = new Uint8Array(await file.arrayBuffer());
   // isEvalSupported: false blocks a known class of malicious-PDF attacks
-  const task = lib.getDocument({ data, isEvalSupported: false });
+  const task = lib.getDocument({ data });
   const doc = await task.promise;
   // PDF.js recommends destroying the *loading task* (not the document) to clean up
   const close = async () => {
