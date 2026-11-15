@@ -4,7 +4,7 @@
 // Validates files by real content before passing them on.
 import { useId, useRef, useState } from "react";
 import type { ChangeEvent, DragEvent } from "react";
-import { CircleAlert, Upload } from "lucide-react";
+import { CircleAlert, Lock, Upload } from "lucide-react";
 import { acceptAttribute, acceptLabels, validateFiles, type AcceptKind } from "@/lib/files";
 
 type DropzoneProps = {
@@ -83,6 +83,10 @@ export default function Dropzone({
         <p className="text-lg font-semibold text-slate-800">{heading}</p>
         <p id={hintId} className="text-sm text-slate-500">
           {hintText}
+        </p>
+        <p className="flex items-center gap-1.5 text-xs font-medium text-emerald-700">
+          <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+          Files stay on your device. Nothing is uploaded.
         </p>
         <button
           type="button"

@@ -4,6 +4,8 @@
 import type { ReactNode } from "react";
 import { SITE } from "@/lib/site";
 import { jsonLd } from "@/lib/seo";
+import ToolCard from "@/components/ToolCard";
+import { TOOLS } from "@/lib/tools";
 
 type ToolPageProps = {
   title: string;
@@ -15,6 +17,12 @@ type ToolPageProps = {
 };
 
 export default function ToolPage({ title, intro, path, steps, faqs, children }: ToolPageProps) {
+  // Other tools, same group (PDF or image) first
+  const current = TOOLS.find((t) => t.href === path);
+  const related = TOOLS.filter((t) => t.href !== path).sort(
+    (a, b) => Number(b.group === current?.group) - Number(a.group === current?.group),
+  );
+
   const structuredData = [
     {
       "@context": "https://schema.org",
@@ -55,6 +63,17 @@ export default function ToolPage({ title, intro, path, steps, faqs, children }: 
       </header>
 
       <div className="mt-8">{children}</div>
+
+      <section className="mt-14" aria-labelledby="related-heading">
+        <h2 id="related-heading" className="text-xl font-bold text-slate-900">
+          Related tools
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {related.map((t) => (
+            <ToolCard key={t.href} tool={t} compact />
+          ))}
+        </div>
+      </section>
 
       <section className="mt-14" aria-labelledby="howto-heading">
         <h2 id="howto-heading" className="text-xl font-bold text-slate-900">

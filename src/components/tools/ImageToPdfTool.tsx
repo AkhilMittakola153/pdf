@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, ExternalLink, Loader2, RotateCcw } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
+import NextSteps from "@/components/NextSteps";
+import { useHandoff } from "@/hooks/useHandoff";
+import { blobToFile } from "@/lib/handoff";
+import { STICKY_ACTIONS } from "@/lib/ui";
 import FileList from "@/components/FileList";
 import { useFileItems } from "@/hooks/useFileItems";
 import { baseName, displayName, formatBytes, safeDownloadName } from "@/lib/files";
@@ -83,7 +87,7 @@ function Segmented<T extends string>({
 }
 
 export default function ImageToPdfTool() {
-  const { items, add, remove, move, update, clear } = useFileItems({ preview: true });
+  const { items, add, remove, move, moveTo, update, clear } = useFileItems({ preview: true });
   const [dims, setDims] = useState<Record<string, Size>>({});
 
   const [settings, setSettings] = useState<LayoutSettings>({
@@ -134,6 +138,9 @@ export default function ImageToPdfTool() {
         .catch(() => update(item.id, { detail: "Could not read this image" }));
     }
   }
+
+  // Files sent from the homepage or another tool
+  useHandoff((files) => handleFiles(files.slice(0, MAX_FILES)));
 
   function startOver() {
     clearResult();
@@ -186,6 +193,10 @@ export default function ImageToPdfTool() {
 
       <FileList
         items={items}
+        onMoveTo={(id, to) => {
+          clearResult();
+          moveTo(id, to);
+        }}
         onMove={(id, dir) => {
           clearResult();
           move(id, dir);
@@ -288,7 +299,7 @@ export default function ImageToPdfTool() {
             </ol>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className={STICKY_ACTIONS}>
             {processing ? (
               <button
                 type="button"
@@ -366,6 +377,9 @@ export default function ImageToPdfTool() {
             <Download className="h-4 w-4" aria-hidden="true" />
             Download PDF
           </button>
+          <div className="w-full">
+            <NextSteps files={[blobToFile(result.blob, result.name)]} kind="pdf" current="/image-to-pdf" />
+          </div>
         </section>
       )}
     </div>

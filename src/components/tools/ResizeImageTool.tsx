@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, Loader2, RotateCcw } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
+import NextSteps from "@/components/NextSteps";
+import { useHandoff } from "@/hooks/useHandoff";
+import { blobToFile } from "@/lib/handoff";
+import { STICKY_ACTIONS } from "@/lib/ui";
 import FileList from "@/components/FileList";
 import { useFileItems } from "@/hooks/useFileItems";
 import { baseName, displayName, formatBytes, safeDownloadName } from "@/lib/files";
@@ -58,7 +62,7 @@ function sizeChange(before: number, after: number): string {
 }
 
 export default function ResizeImageTool() {
-  const { items, add, remove, move, update, clear } = useFileItems({ preview: true });
+  const { items, add, remove, move, moveTo, update, clear } = useFileItems({ preview: true });
   const [dims, setDims] = useState<Record<string, Size>>({});
 
   const [mode, setMode] = useState<Mode>("percent");
@@ -112,6 +116,9 @@ export default function ResizeImageTool() {
         .catch(() => update(item.id, { detail: "Could not read this image" }));
     }
   }
+
+  // Files sent from the homepage or another tool
+  useHandoff((files) => handleFiles(files.slice(0, MAX_FILES)));
 
   function startOver() {
     clearResults();
@@ -272,6 +279,10 @@ export default function ResizeImageTool() {
 
       <FileList
         items={items}
+        onMoveTo={(id, to) => {
+          clearResults();
+          moveTo(id, to);
+        }}
         onMove={(id, dir) => {
           clearResults();
           move(id, dir);
@@ -455,7 +466,7 @@ export default function ResizeImageTool() {
             </p>
           )}
 
-          <div className="flex flex-wrap gap-3">
+          <div className={STICKY_ACTIONS}>
             {processing ? (
               <button
                 type="button"
@@ -581,6 +592,8 @@ export default function ResizeImageTool() {
               </li>
             ))}
           </ul>
+
+          <NextSteps files={results.map((r) => blobToFile(r.blob, r.name))} kind="image" current="/resize-image" />
         </section>
       )}
     </div>

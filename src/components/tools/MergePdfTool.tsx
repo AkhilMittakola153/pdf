@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, ExternalLink, Loader2, RotateCcw } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
+import NextSteps from "@/components/NextSteps";
+import { useHandoff } from "@/hooks/useHandoff";
+import { blobToFile } from "@/lib/handoff";
+import { STICKY_ACTIONS } from "@/lib/ui";
 import FileList from "@/components/FileList";
 import { useFileItems } from "@/hooks/useFileItems";
 import { displayName, formatBytes, safeDownloadName } from "@/lib/files";
@@ -15,7 +19,7 @@ type Info = { pages: number } | { error: string };
 type Result = { blob: Blob; url: string; name: string; pageCount: number };
 
 export default function MergePdfTool() {
-  const { items, add, remove, move, update, clear } = useFileItems();
+  const { items, add, remove, move, moveTo, update, clear } = useFileItems();
   const [info, setInfo] = useState<Record<string, Info>>({});
   const [fileName, setFileName] = useState("merged");
 
@@ -59,6 +63,9 @@ export default function MergePdfTool() {
         });
     }
   }
+
+  // Files sent from the homepage or another tool
+  useHandoff((files) => handleFiles(files.slice(0, MAX_FILES)));
 
   function startOver() {
     clearResult();
@@ -118,6 +125,10 @@ export default function MergePdfTool() {
 
       <FileList
         items={items}
+        onMoveTo={(id, to) => {
+          clearResult();
+          moveTo(id, to);
+        }}
         onMove={(id, dir) => {
           clearResult();
           move(id, dir);
@@ -173,7 +184,7 @@ export default function MergePdfTool() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className={STICKY_ACTIONS}>
             {processing ? (
               <button
                 type="button"
@@ -252,6 +263,9 @@ export default function MergePdfTool() {
             <Download className="h-4 w-4" aria-hidden="true" />
             Download PDF
           </button>
+          <div className="w-full">
+            <NextSteps files={[blobToFile(result.blob, result.name)]} kind="pdf" current="/merge-pdf" />
+          </div>
         </section>
       )}
     </div>

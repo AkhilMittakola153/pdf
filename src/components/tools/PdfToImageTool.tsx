@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, FileText, Loader2, RotateCcw } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
+import NextSteps from "@/components/NextSteps";
+import { useHandoff } from "@/hooks/useHandoff";
+import { blobToFile } from "@/lib/handoff";
+import { STICKY_ACTIONS } from "@/lib/ui";
 import { baseName, displayName, formatBytes, safeDownloadName } from "@/lib/files";
 import { downloadBlob, downloadZip } from "@/lib/download";
 import {
@@ -151,6 +155,9 @@ export default function PdfToImageTool() {
       if (gen === generation.current) setOpening(false);
     }
   }
+
+  // A PDF sent from the homepage or another tool
+  useHandoff((files) => void handleFiles(files));
 
   function togglePage(p: number) {
     clearResults();
@@ -445,6 +452,7 @@ export default function PdfToImageTool() {
               </p>
             )}
 
+            <div className={STICKY_ACTIONS}>
             {processing ? (
               <button
                 type="button"
@@ -465,6 +473,7 @@ export default function PdfToImageTool() {
                 Convert {selectedPages.length} page{selectedPages.length === 1 ? "" : "s"}
               </button>
             )}
+            </div>
           </section>
         </>
       )}
@@ -529,6 +538,8 @@ export default function PdfToImageTool() {
               </li>
             ))}
           </ul>
+
+          <NextSteps files={results.map((r) => blobToFile(r.blob, r.name))} kind="image" current="/pdf-to-image" />
         </section>
       )}
     </div>

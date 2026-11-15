@@ -1,13 +1,19 @@
-// Single list of all tools. The header, homepage and footer read from here,
-// so adding a tool later means editing only this file.
+// Single list of all tools. Header, homepage, footer, related tools and
+// "next step" buttons all read from here.
 import { Combine, FileImage, Images, Maximize2, Scaling } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+export type ToolGroup = "pdf" | "image";
 
 export type Tool = {
   name: string;
   href: string;
-  description: string;
+  description: string; // homepage card
+  short: string; // menus and buttons
   icon: LucideIcon;
+  group: ToolGroup; // colour and menu section
+  accepts: ToolGroup; // which files the tool takes
+  multiple: boolean; // takes several files?
 };
 
 export const TOOLS: Tool[] = [
@@ -15,30 +21,60 @@ export const TOOLS: Tool[] = [
     name: "Image to PDF",
     href: "/image-to-pdf",
     description: "Turn JPG, PNG or WebP images into a single PDF.",
+    short: "Turn JPG, PNG or WebP into a PDF",
     icon: FileImage,
+    group: "image",
+    accepts: "image",
+    multiple: true,
   },
   {
     name: "PDF to Image",
     href: "/pdf-to-image",
     description: "Export PDF pages as high-quality JPG or PNG images.",
+    short: "Export pages as JPG or PNG",
     icon: Images,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Merge PDF",
     href: "/merge-pdf",
     description: "Combine several PDFs into one, in the order you choose.",
+    short: "Combine PDFs in any order",
     icon: Combine,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: true,
   },
   {
     name: "Resize PDF",
     href: "/resize-pdf",
     description: "Change page size to A4, Letter, A3 and more.",
+    short: "Change page size to A4, Letter…",
     icon: Scaling,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Resize Image",
     href: "/resize-image",
     description: "Change image dimensions, format and quality.",
+    short: "Change pixels, format and quality",
     icon: Maximize2,
+    group: "image",
+    accepts: "image",
+    multiple: true,
   },
 ];
+
+export const GROUP_LABEL: Record<ToolGroup, string> = { pdf: "PDF tools", image: "Image tools" };
+
+/** Tailwind colour classes per group: PDF = blue, Image = green */
+export const GROUP_COLOR: Record<ToolGroup, { tile: string; tileHover: string }> = {
+  pdf: { tile: "bg-blue-50 text-blue-600", tileHover: "group-hover:bg-blue-600 group-hover:text-white" },
+  image: { tile: "bg-emerald-50 text-emerald-600", tileHover: "group-hover:bg-emerald-600 group-hover:text-white" },
+};
+
+export const toolsInGroup = (g: ToolGroup) => TOOLS.filter((t) => t.group === g);

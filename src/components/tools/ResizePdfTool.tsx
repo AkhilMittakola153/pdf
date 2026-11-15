@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, ExternalLink, FileText, Loader2, RotateCcw } from "lucide-react";
 import Dropzone from "@/components/Dropzone";
+import NextSteps from "@/components/NextSteps";
+import { useHandoff } from "@/hooks/useHandoff";
+import { blobToFile } from "@/lib/handoff";
+import { STICKY_ACTIONS } from "@/lib/ui";
 import { baseName, displayName, formatBytes, safeDownloadName } from "@/lib/files";
 import { downloadBlob } from "@/lib/download";
 import { openPdf, renderThumbnail } from "@/lib/pdfRender";
@@ -175,6 +179,9 @@ export default function ResizePdfTool() {
       // no preview, that's fine
     }
   }
+
+  // A PDF sent from the homepage or another tool
+  useHandoff((files) => void handleFiles(files));
 
   const fit = info ? computeFit(info.firstPage, settings) : null;
   const sizeLabel = settings.size === "custom" ? "custom" : PAGE_SIZES[settings.size].label;
@@ -350,6 +357,7 @@ export default function ResizePdfTool() {
               )}
             </div>
 
+            <div className={STICKY_ACTIONS}>
             {processing ? (
               <button
                 type="button"
@@ -370,6 +378,7 @@ export default function ResizePdfTool() {
                 Resize PDF
               </button>
             )}
+            </div>
           </section>
         </>
       )}
@@ -419,6 +428,9 @@ export default function ResizePdfTool() {
             <Download className="h-4 w-4" aria-hidden="true" />
             Download PDF
           </button>
+          <div className="w-full">
+            <NextSteps files={[blobToFile(result.blob, result.name)]} kind="pdf" current="/resize-pdf" />
+          </div>
         </section>
       )}
     </div>

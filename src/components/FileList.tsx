@@ -1,28 +1,64 @@
 "use client";
 
 // Shows uploaded files with thumbnail, name, size, and buttons to
-// move up/down and remove. Order here = order used when processing.
-import { ArrowDown, ArrowUp, FileText, Trash2 } from "lucide-react";
+// move up/down and remove. On laptops rows can also be dragged to reorder.
+// Order here = order used when processing.
+import { useState } from "react";
+import { ArrowDown, ArrowUp, FileText, GripVertical, Trash2 } from "lucide-react";
 import { displayName, formatBytes, type FileItem } from "@/lib/files";
 
 type FileListProps = {
   items: FileItem[];
   onMove?: (id: string, dir: -1 | 1) => void;
+  onMoveTo?: (id: string, toIndex: number) => void; // drag-and-drop
   onRemove: (id: string) => void;
 };
 
 const iconBtn =
   "rounded-md p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-blue-600 disabled:opacity-30 disabled:hover:bg-transparent";
 
-export default function FileList({ items, onMove, onRemove }: FileListProps) {
+export default function FileList({ items, onMove, onMoveTo, onRemove }: FileListProps) {
+  const [dragId, setDragId] = useState<string | null>(null);
+  const [overId, setOverId] = useState<string | null>(null);
   if (items.length === 0) return null;
+
+  const endDrag = () => {
+    setDragId(null);
+    setOverId(null);
+  };
 
   return (
     <ol className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
       {items.map((item, index) => {
         const name = displayName(item.file.name);
         return (
-          <li key={item.id} className="flex items-center gap-3 p-3">
+          <li
+            key={item.id}
+            draggable={!!onMoveTo && items.length > 1}
+            onDragStart={(e) => {
+              setDragId(item.id);
+              e.dataTransfer.effectAllowed = "move";
+              e.dataTransfer.setData("text/plain", item.id);
+            }}
+            onDragOver={(e) => {
+              if (!dragId) return; // ignore files dragged in from outside
+              e.preventDefault();
+              if (overId !== item.id) setOverId(item.id);
+            }}
+            onDrop={(e) => {
+              if (!dragId || !onMoveTo) return;
+              e.preventDefault();
+              onMoveTo(dragId, index);
+              endDrag();
+            }}
+            onDragEnd={endDrag}
+            className={`flex items-center gap-3 p-3 transition-colors ${dragId === item.id ? "opacity-40" : ""} ${
+              overId === item.id && dragId !== item.id ? "bg-blue-50" : ""
+            } ${onMoveTo && items.length > 1 ? "cursor-grab active:cursor-grabbing" : ""}`}
+          >
+            {onMoveTo && items.length > 1 && (
+              <GripVertical className="hidden h-4 w-4 shrink-0 text-slate-400 sm:block" aria-hidden="true" />
+            )}
             <span className="w-6 text-center text-sm font-medium text-slate-400">{index + 1}</span>
 
             {item.previewUrl ? (

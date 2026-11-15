@@ -57,6 +57,18 @@ export function useFileItems({ preview = false }: { preview?: boolean } = {}) {
     });
   }, []);
 
+  /** Move an item to a new position (used by drag-and-drop). */
+  const moveTo = useCallback((id: string, toIndex: number) => {
+    setItems((prev) => {
+      const from = prev.findIndex((x) => x.id === id);
+      if (from < 0 || toIndex < 0 || toIndex >= prev.length || from === toIndex) return prev;
+      const copy = [...prev];
+      const [moved] = copy.splice(from, 1);
+      copy.splice(toIndex, 0, moved);
+      return copy;
+    });
+  }, []);
+
   const update = useCallback((id: string, patch: Partial<FileItem>) => {
     setItems((prev) => prev.map((i) => (i.id === id ? { ...i, ...patch } : i)));
   }, []);
@@ -67,5 +79,5 @@ export function useFileItems({ preview = false }: { preview?: boolean } = {}) {
     setItems([]);
   }, []);
 
-  return { items, add, remove, move, update, clear };
+  return { items, add, remove, move, moveTo, update, clear };
 }
