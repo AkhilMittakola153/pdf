@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FileImage, Images, Maximize2, Scaling } from "lucide-react";
+import { Combine, FileImage, Images, Maximize2, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -48,11 +48,31 @@ export const TOOLS: Tool[] = [
     multiple: true,
   },
   {
+    name: "Split PDF",
+    href: "/split-pdf",
+    description: "Extract pages or split a PDF into several smaller files.",
+    short: "Extract pages or split into parts",
+    icon: Scissors,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
+  },
+  {
     name: "Resize PDF",
     href: "/resize-pdf",
     description: "Change page size to A4, Letter, A3 and more.",
     short: "Change page size to A4, Letter…",
     icon: Scaling,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
+  },
+  {
+    name: "Rotate PDF",
+    href: "/rotate-pdf",
+    description: "Turn sideways or upside-down pages the right way up.",
+    short: "Rotate all or single pages",
+    icon: RotateCw,
     group: "pdf",
     accepts: "pdf",
     multiple: false,
