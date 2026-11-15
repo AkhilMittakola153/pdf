@@ -57,9 +57,9 @@ export default function FileList({ items, onMove, onMoveTo, onRemove }: FileList
             } ${onMoveTo && items.length > 1 ? "cursor-grab active:cursor-grabbing" : ""}`}
           >
             {onMoveTo && items.length > 1 && (
-              <GripVertical className="hidden h-4 w-4 shrink-0 text-slate-400 sm:block" aria-hidden="true" />
+              <GripVertical className="hidden h-4 w-4 shrink-0 text-slate-500 sm:block" aria-hidden="true" />
             )}
-            <span className="w-6 text-center text-sm font-medium text-slate-400">{index + 1}</span>
+            <span className="w-6 text-center text-sm font-medium text-slate-500">{index + 1}</span>
 
             {item.previewUrl ? (
               // Blob URLs cannot use next/image, so a plain <img> is correct here.

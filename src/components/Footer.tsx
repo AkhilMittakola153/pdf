@@ -27,7 +27,7 @@ export default function Footer() {
           </p>
         </div>
         <nav aria-label="Tools" className="md:text-right">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Tools</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Tools</p>
           <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
             {TOOLS.map((t) => (
               <li key={t.href}>
