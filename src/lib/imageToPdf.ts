@@ -2,6 +2,7 @@
 // PDF building with pdf-lib. pdf-lib is loaded only when a PDF is created.
 import { detectFileKind } from "@/lib/files";
 import { MAX_CANVAS_AREA, type Size } from "@/lib/image";
+import { SITE } from "@/lib/site";
 
 export type PageSizeChoice = "a4" | "letter" | "fit";
 export type OrientationChoice = "auto" | "portrait" | "landscape";
@@ -173,8 +174,8 @@ export async function buildPdfFromImages(
   const { PDFDocument } = await import("pdf-lib");
   const pdf = await PDFDocument.create();
   pdf.setTitle(title);
-  pdf.setCreator("PDFConvertly");
-  pdf.setProducer("PDFConvertly (pdf-lib)");
+  pdf.setCreator(SITE.name);
+  pdf.setProducer(`${SITE.name} (pdf-lib)`);
   const skipped: string[] = [];
 
   for (let i = 0; i < files.length; i++) {

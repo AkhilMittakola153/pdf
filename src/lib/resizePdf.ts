@@ -1,6 +1,7 @@
 // Resize PDF: put every page onto a new page size, scaled to fit without
 // stretching. Uses pdf-lib (loaded only when needed). Text stays as text.
 import { describePdfError } from "@/lib/mergePdf";
+import { SITE } from "@/lib/site";
 
 export type SizeChoice = "a4" | "a3" | "a5" | "letter" | "legal" | "custom";
 export type Orientation = "auto" | "portrait" | "landscape";
@@ -123,8 +124,8 @@ export async function resizePdf(
 
   const out = await PDFDocument.create();
   out.setTitle(title);
-  out.setCreator("PDFConvertly");
-  out.setProducer("PDFConvertly (pdf-lib)");
+  out.setCreator(SITE.name);
+  out.setProducer(`${SITE.name} (pdf-lib)`);
 
   const pages = src.getPages();
   for (let i = 0; i < pages.length; i++) {

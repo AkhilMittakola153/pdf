@@ -1,4 +1,5 @@
 // Merge PDF helpers using pdf-lib (loaded only when needed).
+import { SITE } from "@/lib/site";
 
 /** Turn pdf-lib errors into a short message a visitor understands. */
 export function describePdfError(e: unknown): string {
@@ -24,8 +25,8 @@ export async function mergePdfs(
   const { PDFDocument } = await import("pdf-lib");
   const merged = await PDFDocument.create();
   merged.setTitle(title);
-  merged.setCreator("PDFConvertly");
-  merged.setProducer("PDFConvertly (pdf-lib)");
+  merged.setCreator(SITE.name);
+  merged.setProducer(`${SITE.name} (pdf-lib)`);
 
   for (let i = 0; i < files.length; i++) {
     if (isCancelled()) return null;

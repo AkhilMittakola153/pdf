@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FileText, Menu, X } from "lucide-react";
 import { TOOLS } from "@/lib/tools";
+import { SITE } from "@/lib/site";
 
 export default function Header() {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-slate-900" onClick={() => setOpen(false)}>
           <FileText className="h-6 w-6 text-blue-600" aria-hidden="true" />
-          PDFConvertly
+          {SITE.name}
         </Link>
 
         <nav aria-label="Tools" className="hidden gap-1 lg:flex">

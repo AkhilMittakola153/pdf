@@ -12,7 +12,7 @@ const base = pageMeta({
   path: "/",
 });
 
-// Home page uses the full title without the "| PDFConvertly" suffix
+// Home page uses the full title without the "| site name" suffix
 export const metadata: Metadata = {
   ...base,
   title: { absolute: `${SITE.name} – Convert, Merge & Resize PDFs and Images` },
@@ -55,7 +55,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-16 grid gap-6 sm:grid-cols-3" aria-label="Why PDFConvertly">
+      <section className="mt-16 grid gap-6 sm:grid-cols-3" aria-label={`Why ${SITE.name}`}>
         {FEATURES.map(({ icon: Icon, title, text }) => (
           <div key={title} className="text-center">
             <Icon className="mx-auto h-8 w-8 text-blue-600" aria-hidden="true" />

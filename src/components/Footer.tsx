@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TOOLS } from "@/lib/tools";
+import { SITE } from "@/lib/site";
 
 const PAGES = [
   { name: "About", href: "/about" },
@@ -13,7 +14,7 @@ export default function Footer() {
     <footer className="mt-16 border-t border-slate-200 bg-white">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-3">
         <div>
-          <p className="font-bold text-slate-900">PDFConvertly</p>
+          <p className="font-bold text-slate-900">{SITE.name}</p>
           <p className="mt-2 text-sm text-slate-600">
             Free PDF and image tools. Your files are processed in your browser and never uploaded.
           </p>
@@ -44,7 +45,7 @@ export default function Footer() {
         </nav>
       </div>
       <p className="border-t border-slate-100 py-4 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} PDFConvertly
+        © {new Date().getFullYear()} {SITE.name}
       </p>
     </footer>
   );
