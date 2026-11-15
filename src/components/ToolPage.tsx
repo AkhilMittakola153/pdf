@@ -6,6 +6,9 @@ import { SITE } from "@/lib/site";
 import { jsonLd } from "@/lib/seo";
 import ToolCard from "@/components/ToolCard";
 import { TOOLS } from "@/lib/tools";
+import Link from "next/link";
+import { BookOpen } from "lucide-react";
+import { guidesForTool } from "@/lib/guides";
 
 type ToolPageProps = {
   title: string;
@@ -19,6 +22,7 @@ type ToolPageProps = {
 export default function ToolPage({ title, intro, path, steps, faqs, children }: ToolPageProps) {
   // Other tools, same group (PDF or image) first
   const current = TOOLS.find((t) => t.href === path);
+  const guides = guidesForTool(path);
   const related = TOOLS.filter((t) => t.href !== path).sort(
     (a, b) => Number(b.group === current?.group) - Number(a.group === current?.group),
   );
@@ -63,6 +67,24 @@ export default function ToolPage({ title, intro, path, steps, faqs, children }: 
       </header>
 
       <div className="mt-8">{children}</div>
+
+      {guides.length > 0 && (
+        <div className="mt-10 space-y-2">
+          {guides.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/guides/${g.slug}`}
+              className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-300"
+            >
+              <BookOpen className="h-5 w-5 shrink-0 text-blue-600" aria-hidden="true" />
+              <span>
+                <span className="block text-xs font-medium text-slate-500">Guide · {g.readMinutes} min read</span>
+                <span className="block font-semibold text-slate-900">{g.title}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
 
       <section className="mt-14" aria-labelledby="related-heading">
         <h2 id="related-heading" className="text-xl font-bold text-slate-900">

@@ -10,6 +10,7 @@ import { GROUP_COLOR, GROUP_LABEL, toolsInGroup, type Tool, type ToolGroup } fro
 
 const GROUPS: ToolGroup[] = ["pdf", "image"];
 const PAGES = [
+  { name: "Guides", href: "/guides" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -39,7 +40,7 @@ function ToolLink({ tool, active, onClick }: { tool: Tool; active: boolean; onCl
 function GroupList({ group, pathname, close }: { group: ToolGroup; pathname: string; close: () => void }) {
   return (
     <div>
-      <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wider text-slate-500">{GROUP_LABEL[group]}</p>
+      <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wider text-slate-400">{GROUP_LABEL[group]}</p>
       {toolsInGroup(group).map((t) => (
         <ToolLink key={t.href} tool={t} active={pathname === t.href} onClick={close} />
       ))}
