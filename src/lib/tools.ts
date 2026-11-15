@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FileImage, Images, Maximize2, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FileImage, Images, Maximize2, Minimize2, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -26,6 +26,16 @@ export const TOOLS: Tool[] = [
     group: "image",
     accepts: "image",
     multiple: true,
+  },
+  {
+    name: "Compress PDF",
+    href: "/compress-pdf",
+    description: "Make PDFs smaller for email and uploads by shrinking images.",
+    short: "Reduce PDF file size",
+    icon: Minimize2,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "PDF to Image",
