@@ -28,10 +28,10 @@ export default function TermsPage() {
       <h2>2. Acceptable use</h2>
       <p>You agree not to:</p>
       <ul>
-        <li>use the Service for anything unlawful, or to process content you do not have the right to use;</li>
-        <li>attempt to disrupt, overload or gain unauthorised access to the Service or its hosting;</li>
-        <li>copy, resell or republish the Service or its design as your own;</li>
-        <li>use automated tools to scrape the site or to generate fake ad impressions or clicks.</li>
+        <li>Use the Service for anything unlawful, or to process content you do not have the right to use;</li>
+        <li>Attempt to disrupt, overload or gain unauthorised access to the Service or its hosting;</li>
+        <li>Copy, resell or republish the Service or its design as your own;</li>
+        <li>Use automated tools to scrape the site or to generate fake ad impressions or clicks.</li>
       </ul>
 
       <h2>3. Your files and content</h2>

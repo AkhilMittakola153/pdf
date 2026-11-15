@@ -1,6 +1,6 @@
 "use client";
 
-// Top bar: logo, "All tools" dropdown (laptop) or ☰ menu (phone), About, Contact.
+// Top bar: logo, "Tools" dropdown (laptop) or ☰ menu (phone), About, Contact.
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -103,7 +103,7 @@ export default function Header() {
                 toolsOpen ? "bg-blue-50 text-blue-700" : "text-slate-700 hover:bg-slate-100"
               }`}
             >
-              All tools
+              Tools
               <ChevronDown className={`h-4 w-4 transition ${toolsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
             </button>
 
