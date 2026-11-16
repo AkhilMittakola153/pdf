@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FileImage, Images, Maximize2, Minimize2, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FileImage, Images, Maximize2, Minimize2, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -86,6 +86,16 @@ export const TOOLS: Tool[] = [
     group: "pdf",
     accepts: "pdf",
     multiple: false,
+  },
+  {
+    name: "Convert Image",
+    href: "/convert-image",
+    description: "Convert between JPG, PNG and WebP in bulk.",
+    short: "JPG, PNG and WebP, any direction",
+    icon: RefreshCw,
+    group: "image",
+    accepts: "image",
+    multiple: true,
   },
   {
     name: "Compress Image",
