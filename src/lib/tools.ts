@@ -88,6 +88,16 @@ export const TOOLS: Tool[] = [
     multiple: false,
   },
   {
+    name: "Compress Image",
+    href: "/compress-image",
+    description: "Shrink photos to a target size like 100 KB for forms and uploads.",
+    short: "Reduce image size, e.g. under 100 KB",
+    icon: Minimize2,
+    group: "image",
+    accepts: "image",
+    multiple: true,
+  },
+  {
     name: "Resize Image",
     href: "/resize-image",
     description: "Change image dimensions, format and quality.",

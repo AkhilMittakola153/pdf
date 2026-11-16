@@ -22,6 +22,52 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "reduce-photo-size-for-online-forms",
+    title: "How to Reduce Photo Size to Under 50 KB or 100 KB for Online Forms",
+    description:
+      "Application forms often reject photos over 50 or 100 KB. Here's how to shrink a photo to the exact limit on your phone or computer, without losing clarity.",
+    tool: "/compress-image",
+    toolName: "Compress Image",
+    published: "2026-11-16",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "Exam, job and government application forms often accept photos and signature scans only below a size limit such as 20 KB, 50 KB or 100 KB. A normal phone photo is 2–5 MB, which is 20 to 100 times too big. Here's how to bring it down quickly while keeping it clear.",
+      },
+      { type: "h2", text: "Steps" },
+      {
+        type: "steps",
+        items: [
+          "Open the Compress Image tool.",
+          "Add your photo (JPG, PNG or WebP). You can add several at once.",
+          "Keep Target size selected and tap the limit your form asks for, for example 100 KB. For other limits, type the number in Custom size.",
+          "Keep Save as: JPG, which every form accepts.",
+          "Tap Compress. Each image shows its new size with a ✓ when it's under the limit.",
+          "Download the image and upload it to the form.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Crop first, compress second. If the form wants a passport-style photo, crop away the background with your phone's photo editor before compressing. Less area means more detail fits into the same size.",
+      },
+      { type: "h2", text: "Common questions" },
+      {
+        type: "list",
+        items: [
+          "The form also asks for specific dimensions (e.g. 200 × 230 px): use Resize Image first to set the exact pixels, then Compress Image to meet the KB limit.",
+          "The photo looks blurry after compressing: the limit is very small for that photo. Crop tighter, or check whether the form allows a slightly larger size.",
+          "The form says “JPG/JPEG only”: JPG and JPEG are the same format, so the downloaded .jpg file is fine.",
+          "Signature scans: photograph the signature on plain white paper in good light, crop closely, then compress. Signatures usually fit easily under 20 KB.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Your photos are processed on your own device and never uploaded, which matters for ID photos and signatures.",
+      },
+    ],
+  },
+  {
     slug: "compress-pdf-for-email",
     title: "How to Compress a PDF for Email",
     description:
