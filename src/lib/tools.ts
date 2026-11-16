@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FileImage, Images, LayoutGrid, Maximize2, Minimize2, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -26,6 +26,26 @@ export const TOOLS: Tool[] = [
     group: "image",
     accepts: "image",
     multiple: true,
+  },
+  {
+    name: "Edit PDF",
+    href: "/edit-pdf",
+    description: "Add text, white-out mistakes, highlight, draw and insert images.",
+    short: "Add text, white-out, highlight, draw",
+    icon: FilePen,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
+  },
+  {
+    name: "Sign PDF",
+    href: "/sign-pdf",
+    description: "Draw, type or upload your signature and place it on a PDF.",
+    short: "Draw, type or upload a signature",
+    icon: PenTool,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Compress PDF",
