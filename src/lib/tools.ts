@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FileImage, Images, Maximize2, Minimize2, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FileImage, Images, LayoutGrid, Maximize2, Minimize2, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -56,6 +56,16 @@ export const TOOLS: Tool[] = [
     group: "pdf",
     accepts: "pdf",
     multiple: true,
+  },
+  {
+    name: "Organize PDF",
+    href: "/organize-pdf",
+    description: "Reorder, delete and rotate pages visually, then save.",
+    short: "Reorder, delete and rotate pages",
+    icon: LayoutGrid,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Split PDF",

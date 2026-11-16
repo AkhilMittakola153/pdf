@@ -96,3 +96,26 @@ export async function splitPdf(
   onProgress(groups.length, groups.length);
   return parts;
 }
+
+/**
+ * Build a new PDF from a list of pages in a new order.
+ * Each entry: original page number (1-based) and extra rotation in degrees.
+ * Pages left out of the list are removed.
+ */
+export async function organizePdf(file: File, pages: { page: number; rotate: number }[]): Promise<Blob> {
+  const { PDFDocument, degrees } = await import("pdf-lib");
+  const src = await loadPdf(file);
+  const out = await PDFDocument.create();
+  out.setCreator(SITE.name);
+  out.setProducer(`${SITE.name} (pdf-lib)`);
+  const copied = await out.copyPages(
+    src,
+    pages.map((p) => p.page - 1),
+  );
+  copied.forEach((pg, i) => {
+    const extra = norm(pages[i].rotate);
+    if (extra) pg.setRotation(degrees(norm(pg.getRotation().angle + extra)));
+    out.addPage(pg);
+  });
+  return toBlob(await out.save({ useObjectStreams: true }));
+}
