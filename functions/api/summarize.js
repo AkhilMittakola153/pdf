@@ -29,6 +29,8 @@ function json(data, status = 200) {
 }
 
 export async function onRequestPost({ request, env }) {
+  const host = new URL(request.url).hostname;
+  if (host !== "pdfsuite.in" && host !== "www.pdfsuite.in") return json({ error: "Not allowed." }, 403);
   if (!allowed(request.headers.get("Origin") || "")) return json({ error: "Not allowed." }, 403);
   if (!env.AI) return json({ error: "Cloud AI is not set up on this site yet." }, 503);
 

@@ -22,6 +22,327 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "compress-pdf-to-100kb-200kb",
+    title: "How to Compress a PDF to 100 KB, 200 KB or 500 KB (Free)",
+    description:
+      "Online forms often reject PDFs over 100, 200 or 500 KB. Here's how to get your PDF under the limit on your phone or computer, without uploading it.",
+    tool: "/compress-pdf",
+    toolName: "Compress PDF",
+    published: "2026-11-17",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Exam, job, scholarship and government portals often accept documents only below a size such as 100 KB, 200 KB or 500 KB. Certificates and mark sheets scanned with a phone are usually 1–5 MB, so they get rejected. Most can be brought under the limit in a minute or two.",
+      },
+      { type: "h2", text: "Method 1: Compress PDF (try this first)" },
+      {
+        type: "steps",
+        items: [
+          "Open the Compress PDF tool and add your PDF.",
+          "Choose Strong and tap Compress PDF. Check the new size shown on screen.",
+          "Still above the limit? Choose Maximum and compress again. This suits scanned documents best.",
+          "Tap Open to make sure the text is still readable, then Download and upload it to the form.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Maximum turns each page into an image, like a scan. That's fine for certificates and ID proofs, but you can no longer select the text.",
+      },
+      { type: "h2", text: "Method 2: for very strict limits (1–2 page documents)" },
+      {
+        type: "p",
+        text: "If the limit is tiny, for example 100 KB for a two-page scan, control the size of each page directly:",
+      },
+      {
+        type: "steps",
+        items: [
+          "Use PDF to Image with JPG and 150 DPI to turn each page into a picture.",
+          "Open Compress Image, choose Target size and set it to the form's limit divided by the number of pages (for example 45 KB each for a 2-page, 100 KB limit).",
+          "Use Image to PDF to put the compressed pages back into one PDF, in the right order.",
+        ],
+      },
+      { type: "h2", text: "Tips for a smaller, clearer result" },
+      {
+        type: "list",
+        items: [
+          "Scan in good light on a plain background. Shadows and grey paper add size.",
+          "Upload only the pages the form needs. Use Split PDF to remove extra pages first.",
+          "Black-and-white documents compress far better than colour photos of them.",
+          "If the text becomes hard to read, the limit is too small for that many pages. Check whether the portal allows separate uploads.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Everything happens in your browser. Your certificates and ID documents are never uploaded to our servers.",
+      },
+    ],
+  },
+  {
+    slug: "pdf-to-jpg",
+    title: "How to Convert a PDF to JPG on Phone or Computer (Free)",
+    description:
+      "Turn PDF pages into JPG or PNG images in high quality, one page or all pages at once. Works on Android, iPhone and computers with no app or upload.",
+    tool: "/pdf-to-image",
+    toolName: "PDF to Image",
+    published: "2026-11-17",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "Sometimes a form, WhatsApp chat or website accepts only images, but you have a PDF. You can turn each page into a JPG in a few seconds, right in your browser.",
+      },
+      { type: "h2", text: "Steps" },
+      {
+        type: "steps",
+        items: [
+          "Open the PDF to Image tool and add your PDF.",
+          "Choose JPG for smaller files, or PNG for the sharpest text.",
+          "Choose the resolution: 150 DPI suits most uses; 300 DPI for printing or very small text; 72 DPI for the smallest files.",
+          "Convert, then download a single page or all pages together as a ZIP file.",
+        ],
+      },
+      { type: "h2", text: "JPG or PNG?" },
+      {
+        type: "list",
+        items: [
+          "JPG: much smaller files. Best for photos, scans and uploading to forms.",
+          "PNG: larger files but crisp edges. Best for documents with fine text, tables or diagrams.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Need the image under a size limit like 50 KB? Convert to JPG first, then use Compress Image with Target size.",
+      },
+      { type: "h2", text: "Opening the ZIP on a phone" },
+      {
+        type: "p",
+        text: "On Android, open the Files app, tap the ZIP and choose Extract. On iPhone, tap the ZIP in the Files app and it unpacks into a folder automatically. Your PDF is converted on your own device and never uploaded.",
+      },
+    ],
+  },
+  {
+    slug: "edit-pdf-free",
+    title: "How to Edit a PDF for Free (Fix a Typo, Add Text or a Date)",
+    description:
+      "Correct a mistake, fill in a blank, add a date or highlight text in any PDF, without Adobe Acrobat. Works in your browser on phone or computer.",
+    tool: "/edit-pdf",
+    toolName: "Edit PDF",
+    published: "2026-11-17",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "You notice a wrong date or a spelling mistake in a PDF just before you need to send it, and you don't have the original Word file. You can fix it in a couple of minutes with Edit PDF.",
+      },
+      { type: "h2", text: "Fix a mistake (cover and retype)" },
+      {
+        type: "steps",
+        items: [
+          "Open the Edit PDF tool and add your PDF.",
+          "Choose White-out and drag a box over the wrong word or number to cover it.",
+          "Choose Text, tap on the white box and type the correct text. Adjust the size so it matches the surrounding text.",
+          "Drag to fine-tune the position. Use Undo if something goes wrong.",
+          "Tap Save PDF and download the corrected file.",
+        ],
+      },
+      { type: "h2", text: "Other things you can do" },
+      {
+        type: "list",
+        items: [
+          "Date: add today's date with one tap.",
+          "Highlight: mark important lines for a reviewer.",
+          "Draw: tick boxes, circle items or add a quick note.",
+          "Image: place a logo, stamp or photo on the page.",
+          "Sign: add your signature (see our guide on signing a PDF on your phone).",
+        ],
+      },
+      {
+        type: "tip",
+        text: "On white paper, white-out is invisible. On coloured or scanned backgrounds the white box may show slightly. Keep it as small as possible.",
+      },
+      { type: "h2", text: "What this tool can't do" },
+      {
+        type: "p",
+        text: "It doesn't change the existing text inside the PDF directly, the way Word does. It adds new text and shapes on top. For small corrections and filling in forms the result looks the same; for rewriting whole paragraphs, edit the original document instead. Your PDF stays on your device the whole time.",
+      },
+    ],
+  },
+  {
+    slug: "webp-to-jpg",
+    title: "How to Convert WebP to JPG (or PNG) for Free",
+    description:
+      "Downloaded an image that saved as .webp and won't upload or open? Convert WebP to JPG or PNG in seconds, in bulk, without uploading your images.",
+    tool: "/convert-image",
+    toolName: "Convert Image",
+    published: "2026-11-17",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "Many websites now serve images in WebP format. When you save one, you get a .webp file that some apps, older software and online forms refuse to accept. Converting it to JPG or PNG fixes that.",
+      },
+      { type: "h2", text: "Steps" },
+      {
+        type: "steps",
+        items: [
+          "Open the Convert Image tool and add one or more WebP images.",
+          "Choose JPG (works everywhere) or PNG (keeps transparent backgrounds).",
+          "If you chose JPG and the image has a transparent background, pick White or Black for those areas.",
+          "Convert and download the images.",
+        ],
+      },
+      { type: "h2", text: "Which format should I pick?" },
+      {
+        type: "list",
+        items: [
+          "JPG: best for photos and for forms that say “JPG/JPEG only”.",
+          "PNG: best for logos, screenshots and images with transparent backgrounds.",
+          "WebP: the smallest files, good for your own website.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "The same tool also converts PNG to JPG and JPG to PNG. If the result must be under a size limit, run it through Compress Image afterwards.",
+      },
+      {
+        type: "p",
+        text: "Your images are converted inside your browser and never uploaded.",
+      },
+    ],
+  },
+  {
+    slug: "rotate-pdf-permanently",
+    title: "How to Rotate a PDF and Save It Permanently",
+    description:
+      "Scanned pages sideways or upside down? Rotate one page or all pages of a PDF and save the fix permanently, so it opens the right way everywhere.",
+    tool: "/rotate-pdf",
+    toolName: "Rotate PDF",
+    published: "2026-11-17",
+    readMinutes: 2,
+    body: [
+      {
+        type: "p",
+        text: "Rotating a PDF in a viewer only changes how you see it on your screen. When you send the file, it still opens sideways for everyone else. To fix it for good, the rotation has to be saved into the PDF.",
+      },
+      { type: "h2", text: "Steps" },
+      {
+        type: "steps",
+        items: [
+          "Open the Rotate PDF tool and add your PDF.",
+          "Tap a page to turn it right, or use the arrows under it to turn it left or right.",
+          "To fix every page at once, use All left or All right.",
+          "Tap Save PDF, then download. The pages now open the right way in every app.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Need to rotate some pages and also delete or reorder others? Use Organize PDF to do all of it in one go.",
+      },
+      {
+        type: "p",
+        text: "Rotation is lossless: pages keep their original quality and text stays selectable. Your file never leaves your device.",
+      },
+    ],
+  },
+  {
+    slug: "resize-pdf-to-a4",
+    title: "How to Resize a PDF to A4 Size",
+    description:
+      "Portal asking for an A4 PDF, or pages printing cut off? Change a PDF's page size to A4 (or Letter, A3, A5, Legal) without distorting the content.",
+    tool: "/resize-pdf",
+    toolName: "Resize PDF",
+    published: "2026-11-17",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "PDFs made from phone photos or from US software often have odd page sizes. Some portals insist on A4, and printers may cut off the edges. Resize PDF puts every page onto a standard page size and scales the content to fit.",
+      },
+      { type: "h2", text: "Steps" },
+      {
+        type: "steps",
+        items: [
+          "Open the Resize PDF tool and add your PDF.",
+          "Choose A4 (the standard in India and most countries). Letter, A3, A5, Legal and Custom are also available.",
+          "Leave orientation on Auto so each page keeps its portrait or landscape direction, or force Portrait or Landscape.",
+          "Pick a margin: None, Small or Large. Small is a good choice for printing.",
+          "Check the preview of page 1, then save and download.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Resizing changes the page size, not the file size in KB. To make the file smaller, use Compress PDF afterwards.",
+      },
+      {
+        type: "p",
+        text: "Content is scaled evenly, so nothing gets stretched. Your PDF is processed on your device and never uploaded.",
+      },
+    ],
+  },
+  {
+    slug: "ai-summarizer-on-device",
+    title: "Why Can't My Computer Summarise PDFs On-Device? (How to Check)",
+    description:
+      "The AI Summarizer works on your device only in Chrome on capable computers. See the requirements, check yours in one minute, and learn when to use cloud mode.",
+    tool: "/summarize-pdf",
+    toolName: "AI Summarizer",
+    published: "2026-11-17",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Our AI Summarizer first tries to use the AI model built into your browser, so your document never leaves your computer. That model is large, so Chrome only offers it on computers powerful enough to run it. If yours doesn't qualify, even a one-page PDF can't be summarised on-device. The size of the document makes no difference.",
+      },
+      { type: "h2", text: "What on-device summaries need" },
+      {
+        type: "list",
+        items: [
+          "Browser: Google Chrome 138 or newer. Microsoft Edge's built-in AI is still in preview, so stable Edge usually won't work.",
+          "System: Windows 10 or 11, macOS 13 or newer, Linux, or a Chromebook Plus. Phones and tablets (Android and iPhone) are not supported.",
+          "Memory: 16 GB RAM with at least 4 CPU cores, or a graphics card with more than 4 GB of video memory. Most 8 GB laptops don't qualify.",
+          "Storage: at least 22 GB free on the drive where Chrome is installed (usually C: on Windows).",
+          "Network: an unlimited connection such as home Wi-Fi for the one-time model download. A mobile hotspot may be treated as metered and block it.",
+          "Work and college laptops: an administrator policy can switch the feature off.",
+        ],
+      },
+      { type: "h2", text: "Check your computer in one minute" },
+      {
+        type: "steps",
+        items: [
+          "Check your RAM: on Windows, press Ctrl + Shift + Esc, open the Performance tab and select Memory. On a Mac, open Apple menu → About This Mac.",
+          "Update Chrome: open chrome://settings/help in the address bar. Chrome updates itself; click Relaunch if asked.",
+          "Open the AI Summarizer page in Chrome, press F12 (or Ctrl + Shift + J) and click the Console tab.",
+          "Type await Summarizer.availability() and press Enter.",
+          "Match the result with the list below.",
+        ],
+      },
+      { type: "h2", text: "What the result means" },
+      {
+        type: "list",
+        items: [
+          "\"available\": the model is ready. Click Summarise on this device.",
+          "\"downloadable\" or \"downloading\": your computer qualifies. Click Summarise on this device once while on Wi-Fi and wait for the one-time download to finish.",
+          "\"unavailable\": your computer doesn't meet the requirements (usually RAM). Use cloud mode instead.",
+          "An error saying Summarizer is not defined: your browser is too old, isn't Chrome, or the feature is blocked by a policy.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "For more detail, open chrome://on-device-internals in Chrome. It shows whether the AI model is installed and, if not, why (for example, that the device isn't capable).",
+      },
+      { type: "h2", text: "If your computer doesn't qualify: cloud mode" },
+      {
+        type: "p",
+        text: "Tick the consent box and choose Summarise with cloud AI. Only the extracted text of that one document is sent to Cloudflare Workers AI to create the summary. The PDF file itself is not uploaded, and nothing is stored. Because the text does leave your device, don't use cloud mode for confidential documents such as medical, financial or legal papers.",
+      },
+      {
+        type: "p",
+        text: "All our other tools, such as merge, compress, split, edit and sign, work fully on your device on any computer or phone.",
+      },
+    ],
+  },
+  {
     slug: "sign-pdf-on-phone",
     title: "How to Sign a PDF on Your Phone (No App Needed)",
     description:
