@@ -5,12 +5,13 @@
 // Setup (one time): Cloudflare dashboard → Workers & Pages → your project →
 // Settings → Bindings → Add → Workers AI → Variable name: AI → Save, then redeploy.
 
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+// Tried in order: if one model fails or is retired, the next is used.
+const MODELS = ["@cf/meta/llama-3.1-8b-instruct-fast", "@cf/meta/llama-3.1-8b-instruct", "@cf/meta/llama-3.2-3b-instruct"];
 const MAX_CHARS = 12000; // keeps each request small and inside the free daily allowance
 
 // Only your own site may call this. Put your Cloudflare Pages project name here
 // (the part before ".pages.dev"), so preview deployments work too.
-const PAGES_PROJECT = "https://pdfsuite-ey2.pages.dev/";
+const PAGES_PROJECT = "https://pdfsuite-ey2.pages.dev";
 const ALLOWED = ["https://pdfsuite.in", "https://www.pdfsuite.in"];
 
 function allowed(origin) {
@@ -48,23 +49,46 @@ export async function onRequestPost({ request, env }) {
       ? `Summarise the document below as exactly ${{ short: 3, medium: 5, long: 7 }[length]} concise bullet points. Start each bullet with "- ". Output only the bullets.`
       : `Summarise the document below in ${{ short: 1, medium: 3, long: 5 }[length]} sentence(s). Output only the summary.`;
 
-  try {
-    const result = await env.AI.run(MODEL, {
-      messages: [
-        {
-          role: "system",
-          content:
-            "You summarise documents accurately and concisely. Use only facts stated in the document; never invent details. Write in the same language as the document.",
-        },
-        { role: "user", content: `${instruction}\n\nDOCUMENT:\n"""\n${text}\n"""` },
-      ],
-      max_tokens: 600,
-    });
-    const summary = typeof result?.response === "string" ? result.response.trim() : "";
-    if (!summary) throw new Error("empty");
-    return json({ summary });
-  } catch {
-    // On the free plan, requests fail (no charge) once the daily allowance is used up
-    return json({ error: "The AI service is busy or today's free limit has been reached. Please try again later." }, 503);
+  const messages = [
+    {
+      role: "system",
+      content:
+        "You summarise documents accurately and concisely. Use only facts stated in the document; never invent details. Write in the same language as the document.",
+    },
+    { role: "user", content: `${instruction}\n\nDOCUMENT:\n"""\n${text}\n"""` },
+  ];
+
+  let lastError = "";
+  for (const model of MODELS) {
+    try {
+      const result = await env.AI.run(model, { messages, max_tokens: 600 });
+      const summary = readText(result);
+      if (summary) return json({ summary });
+      lastError = `${model}: empty response ${JSON.stringify(result).slice(0, 200)}`;
+    } catch (err) {
+      lastError = `${model}: ${err instanceof Error ? err.message : String(err)}`;
+    }
+    console.error("summarize failed", lastError); // visible in Cloudflare's real-time logs
   }
+
+  const limit = /limit|quota|neuron|429|capacity/i.test(lastError);
+  return json(
+    {
+      error: limit
+        ? "Today's free AI limit has been reached. Please try again tomorrow."
+        : "The AI service couldn't create a summary right now. Please try again later.",
+      detail: lastError.slice(0, 300),
+    },
+    503,
+  );
+}
+
+// Workers AI models return text in slightly different shapes; accept all of them.
+function readText(result) {
+  if (!result) return "";
+  if (typeof result === "string") return result.trim();
+  const r = result.response ?? result.result?.response ?? result.choices?.[0]?.message?.content;
+  if (typeof r === "string") return r.trim();
+  if (r && typeof r === "object") return JSON.stringify(r);
+  return "";
 }
