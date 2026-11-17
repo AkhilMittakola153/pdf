@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
+import { Combine, FilePen, IdCard, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -23,6 +23,16 @@ export const TOOLS: Tool[] = [
     description: "Turn JPG, PNG or WebP images into a single PDF.",
     short: "Turn JPG, PNG or WebP into a PDF",
     icon: FileImage,
+    group: "image",
+    accepts: "image",
+    multiple: true,
+  },
+  {
+    name: "ID Card Print",
+    href: "/id-card-print",
+    description: "Aadhaar, PAN or any ID: front and back on one A4 page at real size.",
+    short: "Both sides of an ID card on one A4 page",
+    icon: IdCard,
     group: "image",
     accepts: "image",
     multiple: true,

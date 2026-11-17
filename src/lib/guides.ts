@@ -22,6 +22,67 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "print-aadhaar-front-back-one-page",
+    title: "How to Print Aadhaar Card Front and Back on One Page (A4)",
+    description:
+      "Print both sides of your Aadhaar card on a single A4 sheet at real size, from phone photos or the e-Aadhaar PDF. Free, and your Aadhaar is never uploaded.",
+    tool: "/id-card-print",
+    toolName: "ID Card Print",
+    published: "2026-11-17",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Banks, SIM card shops, offices and colleges often ask for an Aadhaar photocopy with the front and back on one page. You can make that copy yourself in two minutes, from photos of the card or from the e-Aadhaar PDF, and print it or send it on WhatsApp.",
+      },
+      { type: "h2", text: "From photos of your card" },
+      {
+        type: "steps",
+        items: [
+          "Place the card on a dark, plain surface and take a photo of each side from directly above, in good light and without flash glare.",
+          "Open the ID Card Print tool and add both photos.",
+          "On Front side, drag the box over the card and pull a corner to fit it to the card's edges. Use Straighten if the photo is slightly tilted.",
+          "Switch to Back side and do the same.",
+          "Choose the layout and number of copies, then tap Download PDF.",
+        ],
+      },
+      { type: "h2", text: "From the e-Aadhaar PDF" },
+      {
+        type: "steps",
+        items: [
+          "Download your e-Aadhaar from the official UIDAI website or app.",
+          "Add the PDF to the ID Card Print tool. When asked for the password, type the first 4 letters of your name in capitals and your year of birth, for example SUNI1990.",
+          "The tool places a box over each side of the card at the bottom of the page. Adjust each box so it matches the card's edges exactly.",
+          "Download the PDF and print it.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "When printing, choose 100% or Actual size in the print settings, not Fit to page. Then the card prints at its real size of 85.6 × 54 mm, like a true photocopy.",
+      },
+      { type: "h2", text: "Hide your Aadhaar number for safer copies" },
+      {
+        type: "p",
+        text: "Many places don't need your full 12-digit Aadhaar number. A copy that shows only the last 4 digits is safer to hand over. Tap Cover part of the card and drag across the first 8 digits on the preview to black them out, on both sides if the number appears twice.",
+      },
+      { type: "h2", text: "Other options" },
+      {
+        type: "list",
+        items: [
+          "Side by side or one below the other: choose how the front and back are arranged.",
+          "Copies: put 2 or 4 sets on one page when you need several photocopies.",
+          "Black & white: saves ink and matches a normal photocopy.",
+          "Vertical cards: choose Vertical for IDs printed upright, such as many college and office ID cards.",
+          "It also works for PAN, voter ID, driving licence and other card-sized IDs.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Your card photos and PDF are processed entirely on your device. Nothing is uploaded, so your identity document stays with you.",
+      },
+    ],
+  },
+  {
     slug: "compress-pdf-to-100kb-200kb",
     title: "How to Compress a PDF to 100 KB, 200 KB or 500 KB (Free)",
     description:

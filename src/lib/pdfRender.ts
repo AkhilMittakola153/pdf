@@ -25,12 +25,18 @@ export type OpenedPdf = {
   close: () => Promise<void>;
 };
 
-export async function openPdf(file: File): Promise<OpenedPdf> {
+/** Open a PDF. Pass `password` for protected files (it's used only in this browser). */
+export async function openPdf(file: File, password?: string): Promise<OpenedPdf> {
   const lib = await loadPdfjs();
   const data = new Uint8Array(await file.arrayBuffer());
-  // isEvalSupported: false blocks a known class of malicious-PDF attacks
-  const task = lib.getDocument({ data });
-  const doc = await task.promise;
+  const task = lib.getDocument(password ? { data, password } : { data });
+  let doc: PdfDoc;
+  try {
+    doc = await task.promise;
+  } catch (e) {
+    void Promise.resolve(task.destroy?.()).catch(() => undefined); // free the worker, e.g. after a wrong password
+    throw e;
+  }
   // PDF.js recommends destroying the *loading task* (not the document) to clean up
   const close = async () => {
     try {
@@ -40,6 +46,12 @@ export async function openPdf(file: File): Promise<OpenedPdf> {
     }
   };
   return { doc, close };
+}
+
+/** "need" = asks for a password, "wrong" = the password given was incorrect, null = not a password problem. */
+export function passwordProblem(e: unknown): "need" | "wrong" | null {
+  if (!(e instanceof Error) || e.name !== "PasswordException") return null;
+  return (e as Error & { code?: number }).code === 2 ? "wrong" : "need";
 }
 
 export function describePdfjsError(e: unknown): string {

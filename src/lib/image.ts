@@ -96,3 +96,6 @@ export async function resizeImageFile(
     bmp.close();
   }
 }
+
+/** A crop box in pixels of the source image (used by the ImageCropper component). */
+export type CropRect = { x: number; y: number; w: number; h: number };
