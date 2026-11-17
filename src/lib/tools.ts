@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -26,6 +26,16 @@ export const TOOLS: Tool[] = [
     group: "image",
     accepts: "image",
     multiple: true,
+  },
+  {
+    name: "AI Summarizer",
+    href: "/summarize-pdf",
+    description: "Get the key points of a long PDF in seconds, on your device when possible.",
+    short: "Key points of a PDF in seconds",
+    icon: Sparkles,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Edit PDF",

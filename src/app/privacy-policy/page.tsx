@@ -21,8 +21,12 @@ export default function PrivacyPolicyPage() {
       <h2>1. Summary</h2>
       <ul>
         <li>
-          <strong>Your files are never uploaded.</strong> All conversion, merging and resizing happens inside your
-          browser on your own device.
+          <strong>Your files are never uploaded.</strong> All conversion, merging, editing and resizing happens inside
+          your browser on your own device.
+        </li>
+        <li>
+          The one optional exception is the AI Summarizer&apos;s cloud mode: only if you tick the box to use it, the
+          extracted text of that document is sent for summarising. See section 3.
         </li>
         <li>We do not ask for an account, your name or your email address to use the tools.</li>
         <li>The site shows ads from Google AdSense, which may use cookies as described below.</li>
@@ -35,7 +39,23 @@ export default function PrivacyPolicyPage() {
         on your device and are cleared from memory when you close or leave the page.
       </p>
 
-      <h2>3. Information collected automatically</h2>
+      <h2>3. AI Summarizer</h2>
+      <p>
+        The AI Summarizer first tries to summarise your PDF on your device, using the AI model built into your browser
+        (where available). In that case nothing leaves your device.
+      </p>
+      <p>
+        If your browser cannot do this, you may choose the optional cloud mode by ticking a box each time. Only then is
+        the text extracted from that PDF (not the file itself, and limited in length) sent to Cloudflare Workers AI to
+        generate the summary, which is returned straight to your browser. {SITE.name} does not store the text or the
+        summary. Cloudflare processes it under its own{" "}
+        <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">
+          privacy policy
+        </a>
+        . Please do not use cloud mode for confidential documents.
+      </p>
+
+      <h2>4. Information collected automatically</h2>
       <p>
         Like most websites, our hosting provider (Cloudflare) processes basic technical data, such as your IP address,
         browser type and the pages requested, to deliver the site and protect it from abuse. We may also use privacy-
@@ -43,7 +63,7 @@ export default function PrivacyPolicyPage() {
         identify you.
       </p>
 
-      <h2>4. Advertising and cookies</h2>
+      <h2>5. Advertising and cookies</h2>
       <p>
         We use Google AdSense to show advertisements. Third-party vendors, including Google, use cookies to serve ads
         based on your previous visits to this website and other websites. Google&apos;s use of advertising cookies
@@ -78,33 +98,33 @@ export default function PrivacyPolicyPage() {
         cookies.
       </p>
 
-      <h2>5. Consent (EEA, UK and Switzerland)</h2>
+      <h2>6. Consent (EEA, UK and Switzerland)</h2>
       <p>
         If you visit from the European Economic Area, the United Kingdom or Switzerland, we ask for your consent before
         personalised ads or non-essential cookies are used, through a consent message. You can change your choice at
         any time using the privacy settings link shown on the site.
       </p>
 
-      <h2>6. Children</h2>
+      <h2>7. Children</h2>
       <p>
         This site is not directed at children under 13, and we do not knowingly collect personal information from
         children.
       </p>
 
-      <h2>7. Your rights</h2>
+      <h2>8. Your rights</h2>
       <p>
         Because we do not store your files or ask for personal details, we usually hold no personal data about you.
         Depending on where you live, you may have rights to access, correct or delete personal data, or to object to its
         use. For data held by Google or Cloudflare, please use their privacy tools. For anything else, contact us.
       </p>
 
-      <h2>8. Changes to this policy</h2>
+      <h2>9. Changes to this policy</h2>
       <p>
         We may update this policy from time to time. The &quot;Last updated&quot; date at the top shows when it last
         changed.
       </p>
 
-      <h2>9. Contact</h2>
+      <h2>10. Contact</h2>
       <p>
         Questions about this policy? Email <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a> or visit our{" "}
         <Link href="/contact">contact page</Link>.

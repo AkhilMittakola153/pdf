@@ -7,5 +7,5 @@ export const SITE = {
   contactEmail: "hello@pdfsuite.in", 
   owner: "PDF Suite",
   country: "India", 
-  lastUpdated: "13 November 2026", 
+  lastUpdated: "17 November 2026", 
 };
