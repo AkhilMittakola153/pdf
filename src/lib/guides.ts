@@ -22,6 +22,56 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "sign-pdf-on-phone",
+    title: "How to Sign a PDF on Your Phone (No App Needed)",
+    description:
+      "Sign a PDF on Android or iPhone in under a minute: draw, type or upload your signature, place it, add the date and download. No app and no upload.",
+    tool: "/sign-pdf",
+    toolName: "Sign PDF",
+    published: "2026-11-17",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "Someone emails you a form or agreement and asks you to sign and send it back today. You don't need a printer, a scanner or an app: your phone's browser can do the whole thing.",
+      },
+      { type: "h2", text: "Steps (Android and iPhone)" },
+      {
+        type: "steps",
+        items: [
+          "Save the PDF from the email to your phone (Downloads on Android, the Files app on iPhone).",
+          "Open the Sign PDF tool in Chrome or Safari and choose the file.",
+          "Create your signature: Draw it with your finger, Type your name in a handwriting style, or Upload a photo of your signature.",
+          "Tap the page where the signature should go. Drag it to adjust, and pull the blue corner to resize.",
+          "Need the date? Choose Date and tap next to the signature. Use Text for your name or other details.",
+          "Tap Save PDF, then Download, and attach the signed file to your reply.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Drawing with a finger is easier if you turn your phone sideways: the signature pad gets wider.",
+      },
+      { type: "h2", text: "Which signature option should I use?" },
+      {
+        type: "list",
+        items: [
+          "Draw: looks most like your real signature. Best for most documents.",
+          "Type: quick and neat, good for informal forms.",
+          "Upload: sign on white paper with a dark pen, photograph it in good light, and crop it closely. Gives the most natural result.",
+        ],
+      },
+      { type: "h2", text: "Is it legally valid?" },
+      {
+        type: "p",
+        text: "This places an image of your signature on the document, which is accepted for many everyday purposes such as rental forms, consent letters and internal approvals. Some documents legally require a certified digital signature (in India, for example, a DSC for certain government and tax filings). If you're unsure, ask the person or organisation requesting it.",
+      },
+      {
+        type: "p",
+        text: "Your PDF and your signature stay on your phone the whole time. Nothing is uploaded.",
+      },
+    ],
+  },
+  {
     slug: "reduce-photo-size-for-online-forms",
     title: "How to Reduce Photo Size to Under 50 KB or 100 KB for Online Forms",
     description:

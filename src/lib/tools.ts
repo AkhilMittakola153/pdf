@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, RotateCw, Scaling, Scissors } from "lucide-react";
+import { Combine, FilePen, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -76,6 +76,16 @@ export const TOOLS: Tool[] = [
     group: "pdf",
     accepts: "pdf",
     multiple: true,
+  },
+  {
+    name: "Add Watermark",
+    href: "/watermark-pdf",
+    description: "Stamp text like CONFIDENTIAL or DRAFT across your PDF pages.",
+    short: "Stamp CONFIDENTIAL, DRAFT and more",
+    icon: Stamp,
+    group: "pdf",
+    accepts: "pdf",
+    multiple: false,
   },
   {
     name: "Organize PDF",
