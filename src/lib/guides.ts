@@ -22,6 +22,51 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "signature-for-online-forms",
+    title: "How to Scan and Resize Your Signature for Online Forms (10–20 KB)",
+    description:
+      "Make a clean signature image at the exact pixel size and KB limit exam and job forms ask for, using just your phone camera. Free, and never uploaded.",
+    tool: "/signature-resize",
+    toolName: "Signature Resize",
+    published: "2026-11-21",
+    readMinutes: 3,
+    body: [
+      {
+        type: "p",
+        text: "Most online applications ask for a scanned signature, often within a size like 10–20 KB and sometimes at exact pixels such as 140 × 60. You don't need a scanner: a phone photo, cleaned up, works well.",
+      },
+      { type: "h2", text: "1. Sign and take the photo" },
+      {
+        type: "list",
+        items: [
+          "Sign on plain white paper with a black or dark blue pen. Gel and ball pens work better than pencil.",
+          "Sign a little larger than usual, so it stays clear after resizing.",
+          "Take the photo from directly above in good light. A little shadow is fine, the tool removes it.",
+        ],
+      },
+      { type: "h2", text: "2. Clean and resize it" },
+      {
+        type: "steps",
+        items: [
+          "Open the Signature Resize tool and add the photo.",
+          "Drag the box around your signature, leaving out paper edges and other writing.",
+          "Check the preview. Raise Ink detection if thin strokes are missing, or lower it if dots appear.",
+          "Under For online forms, enter the width and height from your form's instructions (or leave them empty) and the maximum KB, for example 20.",
+          "Tap Download JPG. The message shows the final size in pixels and KB.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "If the form gives a minimum size too (for example 10–20 KB) and your file is smaller, enter a larger width and height within the allowed range.",
+      },
+      { type: "h2", text: "Signing PDFs" },
+      {
+        type: "p",
+        text: "Download the Transparent PNG as well. It has no white box around it, so it looks natural when you add it to a document with Sign PDF. Your signature is processed on your device and never uploaded.",
+      },
+    ],
+  },
+  {
     slug: "passport-size-photo-for-exam-forms",
     title: "How to Make a Passport Size Photo for Online Forms (Exact Pixels and KB)",
     description:
