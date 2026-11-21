@@ -22,6 +22,57 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "passport-size-photo-for-exam-forms",
+    title: "How to Make a Passport Size Photo for Online Forms (Exact Pixels and KB)",
+    description:
+      "Make a passport size photo at the exact pixel size and KB limit exam and job forms ask for, or print 8 copies on 4×6 paper. Free, on your phone.",
+    tool: "/passport-photo",
+    toolName: "Passport Photo Maker",
+    published: "2026-11-21",
+    readMinutes: 4,
+    body: [
+      {
+        type: "p",
+        text: "Exam, job and scholarship forms are strict about photos: an exact size such as 200 × 230 pixels, a file size such as 20–50 KB, and a clear face on a light background. You can make a photo that meets all three on your phone in a few minutes.",
+      },
+      { type: "h2", text: "1. Take a good photo" },
+      {
+        type: "list",
+        items: [
+          "Stand in front of a plain white or light-coloured wall, in daylight or a well-lit room.",
+          "Face the camera directly, with a neutral expression and both ears visible if the form asks for it.",
+          "Hold the phone at eye level, about an arm's length away, or ask someone to take it.",
+          "Avoid caps and dark glasses, and keep shadows off your face and the wall behind you.",
+        ],
+      },
+      { type: "h2", text: "2. Crop it to the exact size" },
+      {
+        type: "steps",
+        items: [
+          "Open the Passport Photo Maker and add your photo.",
+          "Choose Online form, then type the width and height in pixels from your notification (for example 200 and 230).",
+          "Type the maximum file size in Max size (KB), for example 50.",
+          "Move and resize the box so your head fills the dotted oval, with your shoulders at the bottom.",
+          "Use Brightness if the photo looks dark, then tap Download photo. The message shows the final pixel size and KB.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Some forms also give a minimum size, such as 20–50 KB. If your photo comes out below the minimum, choose a larger pixel size within the allowed range, or leave Max size empty.",
+      },
+      { type: "h2", text: "Printed passport size photos" },
+      {
+        type: "p",
+        text: "For a printed photo, choose Passport size (3.5 × 4.5 cm), US visa (2 × 2 in) or Stamp size (2 × 2.5 cm). Under Print sheet, pick 4 × 6 in paper for 8 passport photos, or A4 for more. Download the Sheet JPG to print at any photo studio, or the Sheet PDF to print at home at 100% size.",
+      },
+      { type: "h2", text: "Signature too?" },
+      {
+        type: "p",
+        text: "Most forms also ask for a scanned signature with its own size limit. See our guide on reducing photo and signature size for online forms. Your photo is processed on your device and never uploaded.",
+      },
+    ],
+  },
+  {
     slug: "print-aadhaar-front-back-one-page",
     title: "How to Print Aadhaar Card Front and Back on One Page (A4)",
     description:

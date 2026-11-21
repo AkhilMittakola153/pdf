@@ -21,12 +21,14 @@ export default function ImageCropper({
   crop,
   onChange,
   label,
+  guide,
 }: {
   source: HTMLCanvasElement;
   aspect: number | null; // width ÷ height, or null for a free shape
   crop: CropRect;
   onChange: (c: CropRect) => void;
   label: string;
+  guide?: "face"; // draw an oval where the head should go (passport photos)
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -139,6 +141,12 @@ export default function ImageCropper({
           boxShadow: "0 0 0 9999px rgba(15, 23, 42, 0.55)", // darkens everything outside the box
         }}
       >
+        {guide === "face" && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[20%] top-[8%] h-[70%] w-[60%] rounded-[50%] border-2 border-dashed border-white/90"
+          />
+        )}
         {corners.map((c) => (
           <span
             key={c}

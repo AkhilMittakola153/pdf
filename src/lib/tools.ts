@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FilePen, IdCard, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
+import { Combine, FilePen, IdCard, User, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -36,6 +36,16 @@ export const TOOLS: Tool[] = [
     group: "image",
     accepts: "image",
     multiple: true,
+  },
+  {
+    name: "Passport Photo Maker",
+    href: "/passport-photo",
+    description: "Passport, visa and stamp size photos, or exact pixel and KB sizes for exam forms.",
+    short: "Passport size and exam form photos",
+    icon: User,
+    group: "image",
+    accepts: "image",
+    multiple: false,
   },
   {
     name: "AI Summarizer",
