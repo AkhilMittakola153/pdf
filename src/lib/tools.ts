@@ -1,6 +1,6 @@
 // Single list of all tools. Header, homepage, footer, related tools and
 // "next step" buttons all read from here.
-import { Combine, FilePen, IdCard, User, PenLine, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
+import { Combine, FilePen, IdCard, User, PenLine, Crop, FileImage, Images, LayoutGrid, Maximize2, Minimize2, PenTool, RefreshCw, Stamp, RotateCw, Scaling, Scissors, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type ToolGroup = "pdf" | "image";
@@ -53,6 +53,16 @@ export const TOOLS: Tool[] = [
     description: "Clean a signature photo: remove background and shadows, resize to the KB a form needs.",
     short: "Clean signature, any size and KB",
     icon: PenLine,
+    group: "image",
+    accepts: "image",
+    multiple: false,
+  },
+  {
+    name: "Crop Image",
+    href: "/crop-image",
+    description: "Crop JPG, PNG or WebP to free, square, 16:9, story or a custom ratio.",
+    short: "Crop to any shape or ratio",
+    icon: Crop,
     group: "image",
     accepts: "image",
     multiple: false,

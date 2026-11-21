@@ -1,6 +1,6 @@
 // ID card print: put the front and back of a card (Aadhaar, PAN, voter ID,
 // driving licence…) on one A4 page at real size. Everything runs in the browser.
-import type { CropRect } from "@/lib/image";
+import { MAX_CANVAS_AREA, type CropRect } from "@/lib/image";
 
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Side = "front" | "back";
@@ -75,14 +75,24 @@ function makeCanvas(w: number, h: number) {
   return { canvas, ctx };
 }
 
-/** Load a photo (phone rotation applied) and reduce it to a workable size. */
-export async function loadImageSource(blob: Blob, maxSide = MAX_SOURCE): Promise<HTMLCanvasElement> {
+/**
+ * Load a photo (phone rotation applied) and reduce it to a workable size.
+ * Pass `fill: null` to keep transparency (PNG/WebP).
+ */
+export async function loadImageSource(
+  blob: Blob,
+  maxSide = MAX_SOURCE,
+  fill: string | null = "#ffffff",
+  maxArea = MAX_CANVAS_AREA,
+): Promise<HTMLCanvasElement> {
   const bmp = await createImageBitmap(blob);
   try {
-    const s = Math.min(1, maxSide / Math.max(bmp.width, bmp.height));
+    const s = Math.min(1, maxSide / Math.max(bmp.width, bmp.height), Math.sqrt(maxArea / (bmp.width * bmp.height)));
     const { canvas, ctx } = makeCanvas(bmp.width * s, bmp.height * s);
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (fill) {
+      ctx.fillStyle = fill;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
     ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
     return canvas;
   } finally {
@@ -91,7 +101,7 @@ export async function loadImageSource(blob: Blob, maxSide = MAX_SOURCE): Promise
 }
 
 /** Rotate by quarter turns plus a small straightening angle (degrees). Corners are filled white. */
-export function rotateSource(base: HTMLCanvasElement, quarter: number, fine: number): HTMLCanvasElement {
+export function rotateSource(base: HTMLCanvasElement, quarter: number, fine: number, fill: string | null = "#ffffff"): HTMLCanvasElement {
   const deg = (((quarter % 4) + 4) % 4) * 90 + fine;
   if (deg === 0) return base;
   const rad = (deg * Math.PI) / 180;
@@ -100,8 +110,10 @@ export function rotateSource(base: HTMLCanvasElement, quarter: number, fine: num
   const w = base.width * cos + base.height * sin;
   const h = base.width * sin + base.height * cos;
   const { canvas, ctx } = makeCanvas(w, h);
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (fill) {
+    ctx.fillStyle = fill;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
   ctx.translate(canvas.width / 2, canvas.height / 2);
   ctx.rotate(rad);
   ctx.drawImage(base, -base.width / 2, -base.height / 2);
